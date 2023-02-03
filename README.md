@@ -12,23 +12,16 @@ aggregate module. The module names are listed below:
 
 ## Prerequisites
 
----
-
 - JDK 17
 - Maven 3.X.X
 
 ## Getting Started
 
----
-
 Run `mvn clean install` to build the project. This will generate the individual module reports, as well as the
 aggregated report for the entire project. All reports are located at `../target/jacoco/index.html` within their
 respective modules.
 
-
 ## Notes
-
----
 
 ### 03-02-2023
 
