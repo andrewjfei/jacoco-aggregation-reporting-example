@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>dev.andrewjfei</groupId>
+    <artifactId>jacoco-aggregation-reporting-example</artifactId>
+    <name>JaCoCo Aggregation Reporting Example</name>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>module-aggregate</module>
+        <module>module-one</module>
+        <module>module-two</module>
+    </modules>
+
+    <properties>
+        <!-- JDK Version -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- JUnit -->
+        <junit.jupiter.version>5.9.2</junit.jupiter.version>
+
+        <!-- JaCoCo -->
+        <jacoco.version>0.8.8</jacoco.version>
+        <jacoco.report.directory>${project.build.directory}/jacoco</jacoco.report.directory>
+        <jacoco.exec.file.path>${project.build.directory}/jacoco/jacoco.exec</jacoco.exec.file.path>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- JUnit Jupiter -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco.version}</version>
+                    <executions>
+                        <!-- Preparing JaCoCo Runtime Agent -->
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                            <configuration>
+                                <destFile>${jacoco.exec.file.path}</destFile>
+                                <append>true</append>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
